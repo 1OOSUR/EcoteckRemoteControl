@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="dk.atbrask.ecoteckremotecontrol" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <receiver android:name=".EcoteckWidget" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/ecoteck_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name=".EcoteckIntentReceiver"
+            android:label="widgetBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="dk.atbrask.EcoteckWidget.intent.action.TEMPERATURE_UP" />
+                <action android:name="dk.atbrask.EcoteckWidget.intent.action.TEMPERATURE_DOWN" />
+                <action android:name="dk.atbrask.EcoteckWidget.intent.action.FIRE_UP" />
+                <action android:name="dk.atbrask.EcoteckWidget.intent.action.FIRE_DOWN" />
+                <action android:name="dk.atbrask.EcoteckWidget.intent.action.ON_OFF" />
+                <action android:name="dk.atbrask.EcoteckWidget.intent.action.CONFIRM_ON_OFF" />
+                <action android:name="dk.atbrask.EcoteckWidget.intent.action.CANCEL_ON_OFF" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/ecoteck_widget_info" />
+        </receiver>
+    </application>
+    <uses-feature android:name="android.hardware.consumerir" />
+    <uses-permission android:name="android.permission.TRANSMIT_IR" />
+</manifest>
